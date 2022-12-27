@@ -1,0 +1,35 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique"]
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique() @default("") @db.VarChar(255)
+  email    String? @default("") @db.VarChar(255)
+  password String  @default("") @db.VarChar(255)
+  posts    Post[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  sid       String   @unique
+  data      String   @db.Text
+  expiresAt DateTime
+}
+
+model Post {
+  id       Int    @id @default(autoincrement())
+  title    String @default("")
+  content  String @default("")
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  authorId Int
+
+  @@index([authorId])
+}
