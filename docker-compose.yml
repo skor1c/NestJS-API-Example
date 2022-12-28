@@ -9,6 +9,12 @@ services:
       - ${NODE_LOCAL_PORT}:${NODE_LOCAL_PORT}
     depends_on:
       - mysqldb
+    command: sh -c "/wait && npm run start:migrate:prod"
+    environment:
+      - WAIT_HOSTS=mysqldb:${MYSQL_TCP_PORT}
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
     env_file:
       - .env
 

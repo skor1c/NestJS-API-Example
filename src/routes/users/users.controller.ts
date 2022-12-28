@@ -10,7 +10,7 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiCookieAuth, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiCookieAuth, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { AuthenticatedGuard } from 'src/core/guards/LocalAuthGuard.guard';
 import { UsersService } from './users.service';
 import { SerializedUser, SerializedUserPagination } from './types';
