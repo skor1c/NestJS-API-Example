@@ -22,8 +22,7 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 
 # Add docker-compose-wait tool -------------------
-ENV WAIT_VERSION 2.7.2
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.2/wait /wait
 RUN chmod +x /wait
 
 EXPOSE 5001
